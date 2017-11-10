@@ -1,19 +1,41 @@
 import React from 'react';
 import {observer} from 'mobx-react';
+import {action} from 'mobx';
 import {Button} from '../components';
+import {withState} from '../core';
 
-async function wait() {
-  return new Promise(resolve => setTimeout(resolve, 2000));
+// class NewRoom extends React.Component {
+//   constructor() {
+//
+//   }
+//
+//   render() {
+//     return (
+//       <div className='border p2 bg-haze'>
+//         <Button onClick={() => wait()}>
+//           Create new Room
+//         </Button>
+//       </div>
+//     );
+//   }
+// });
+//
+// export default observer(NewRoom);
+
+class NewRoomState {
+  createNewRoom = action(() => {
+    console.log('hello world!!!')
+  });
 }
 
-const NewRoom = observer(({}) => {
+const NewRoom = withState(({uiState}) => {
   return (
     <div className='border p2 bg-haze'>
-      <Button onClick={() => wait()}>
+      <Button onClick={() => uiState.createNewRoom()}>
         Create new Room
       </Button>
     </div>
   );
-});
+}, NewRoomState);
 
 export default NewRoom;
