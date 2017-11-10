@@ -5,7 +5,7 @@ import {extendObservable} from 'mobx';
 class Button extends React.Component {
   constructor() {
     super();
-    
+
     extendObservable(this, {
       disabled: false
     });
@@ -28,7 +28,7 @@ class Button extends React.Component {
     const {disabled} = this;
 
     return (
-      <button className={`${className} ${disabled || this.props.disabled ? 'is-disabled': ''}`}
+      <button className={`${className} ${disabled || this.props.disabled ? 'disabled': ''}`}
               onClick={async (e) => this.handleClick(onClick, e)} {...rest}>
         {children}
       </button>

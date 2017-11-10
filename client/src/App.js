@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import './basscss.css';
+import './App.css';
 import NewRoom from './views/NewRoom';
 
 class App extends Component {
