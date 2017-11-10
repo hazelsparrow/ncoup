@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Lobby from './Lobby';
+import Lobby from './lobby';
 import Room from './room';
 
 const AppPage = observer(() => {
