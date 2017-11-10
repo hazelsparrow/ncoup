@@ -1,9 +1,9 @@
 import api from './api';
-import withState from './withState';
+import withStore from './withStore';
 import {loader} from './loader';
 
 export {
   api,
   loader,
-  withState
+  withStore
 }

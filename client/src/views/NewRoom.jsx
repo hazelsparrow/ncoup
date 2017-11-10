@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import {action} from 'mobx';
 import {Button} from '../components';
-import {withState, api} from '../core';
+import {withStore, api} from '../core';
 
 class NewRoomState {
   createNewRoom = action(async () => {
@@ -11,10 +11,10 @@ class NewRoomState {
   });
 }
 
-const NewRoom = withState(({uiState}) => {
+const NewRoom = withStore(({store}) => {
   return (
     <div className='border p2 bg-haze'>
-      <Button onClick={() => uiState.createNewRoom()}>
+      <Button onClick={() => store.createNewRoom()}>
         Create new Room
       </Button>
     </div>
