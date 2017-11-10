@@ -2,29 +2,12 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import {action} from 'mobx';
 import {Button} from '../components';
-import {withState} from '../core';
-
-// class NewRoom extends React.Component {
-//   constructor() {
-//
-//   }
-//
-//   render() {
-//     return (
-//       <div className='border p2 bg-haze'>
-//         <Button onClick={() => wait()}>
-//           Create new Room
-//         </Button>
-//       </div>
-//     );
-//   }
-// });
-//
-// export default observer(NewRoom);
+import {withState, api} from '../core';
 
 class NewRoomState {
-  createNewRoom = action(() => {
-    console.log('hello world!!!')
+  createNewRoom = action(async () => {
+    const response = await api.post('rooms');
+    window.location = `/rooms/${response.data.id}`;
   });
 }
 
