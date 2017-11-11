@@ -4,7 +4,8 @@ import {Submit, ActionLink} from '../../components';
 
 const GoBack = observer(({store}) => {
   return (
-    <div className='MyName h4'>
+    <div className='MyName h4 p1'>
+      <i className="fa fa-chevron-left" aria-hidden="true"></i>  
       <ActionLink onClick={() => store.hideChangeNameForm()} className='NameChange'>
         Cancel
       </ActionLink>
@@ -21,13 +22,13 @@ const ChangeMyName = observer(({store}) => {
         </p>
         <div className='mt1'>
           <input type='text'
-                 value={store.player.name}
+                 value={store.editName}
                  onChange={e => store.updatePlayerName(e.target.value)}
                  className='NewRoomBtn block'>
           </input>
         </div>
         <div className='mt2 center'>
-          <Submit onClick={() => console.log('hey')} style={{minWidth: '140px'}}>
+          <Submit onClick={() => store.createOrUpdatePlayer()} style={{minWidth: '140px'}}>
             Save
           </Submit>
         </div>

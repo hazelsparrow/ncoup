@@ -13,7 +13,7 @@ const Header = observer(() => {
   );
 });
 
-const Info = observer(({}) => {
+const Info = observer(() => {
   return (
     <h3 className='h5 subtle thin'>
       An online version of the famous board game <a href='https://boardgamegeek.com/boardgame/131357/coup'>Coup</a>.
