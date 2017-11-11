@@ -5,6 +5,6 @@ module.exports = function(app) {
     .get(controller.index)
     .post(controller.post);
 
-  app.route('/rooms/:id')
+  app.route('/rooms/:key')
     .get(controller.get);
 };

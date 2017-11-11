@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {extendObservable, computed} from 'mobx';
+import {extendObservable} from 'mobx';
 import _ from 'lodash';
 
 export default (WrappedComponent, Store) => {

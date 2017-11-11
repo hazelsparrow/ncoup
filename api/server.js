@@ -1,6 +1,12 @@
 const express = require('express'),
+      mongoose = require('mongoose'),
       app = express(),
+      Promise = require('bluebird'),
       port = process.env.PORT || 3001;
+
+mongoose.Promise = Promise;
+
+mongoose.connect('mongodb://localhost/ncoup');
 
 app.listen(port);
 

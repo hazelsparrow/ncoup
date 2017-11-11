@@ -3,7 +3,7 @@ import {observer} from 'mobx-react';
 // import Raven from 'raven-js';
 // import {Spinner}from 'components';
 
-const Spinner = observer(({}) => {
+const Spinner = observer(() => {
   return (
     <div className=''>Loading...</div>
   );
