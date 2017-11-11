@@ -3,7 +3,7 @@ const shortId = require('shortId'),
       Player = require('../models/Player');
 
 function playerParams(request) {
-  return _.pick(request.params, [
+  return _.pick(request.body, [
     'name'
   ]);
 }
@@ -34,18 +34,13 @@ module.exports.post = async function(request, response) {
 };
 
 module.exports.patch = async function(request, response) {
-  console.log('====== PATcH =====')
-  console.log(request.params.id)
   const player = await Player.findById(request.params.id);
-  console.log(player)
 
   if (!player) {
     response.sendStatus(404);
   }
 
   player.set(playerParams(request));
-  console.log('====== END')
-
   await player.save();
 
   response.send(player);
