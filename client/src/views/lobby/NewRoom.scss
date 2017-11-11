@@ -1,7 +1,12 @@
+@import '../../App.scss';
+
 .NewRoomBtn {
   padding: 1rem;
   font-size: 28px;
   width: 100%;
+}
+
+.NewRoomBtnContainer {
   max-width: 400px;
 }
 
@@ -15,4 +20,22 @@
   border-top-left-radius: 0px;
   border-top: none;
   height: 240px;
+}
+
+.MyName {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+}
+
+.NameChange {
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-bottom: -1px;
+}
+
+.NameChange:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted $dark;
 }

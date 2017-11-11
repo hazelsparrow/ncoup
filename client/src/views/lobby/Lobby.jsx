@@ -20,6 +20,32 @@ const Info = observer(({}) => {
   );
 });
 
+const JoinRoom = observer(({store}) => {
+  if (store.hintVisible) {
+    return (
+      <p className='left'>
+        {"If you're looking to join an existing room, ask the person who created it to share its URL with you. "}
+        (<ActionLink onClick={() => store.toggleJoiningHint()}>Hide this</ActionLink>)
+      </p>
+    );
+  }
+
+  return (
+    <ActionLink onClick={() => store.toggleJoiningHint()}>
+      Looking to join an existing room?
+    </ActionLink>
+  );
+});
+
+const MyName = observer(({store}) => {
+  return (
+    <div className='MyName h4'>
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <ActionLink onClick={() => store.showChangeNameForm()} className='NameChange'>Gregory</ActionLink>
+    </div>
+  );
+});
+
 const Lobby = observer(({store}) => {
   return (
     <div className='clearfix mx-auto fit m2 px2'>
@@ -30,23 +56,19 @@ const Lobby = observer(({store}) => {
             <Info/>
           </div>
         </div>
-        <div className='border rounded NewRoomContainer pt4 px2 center'>
-          <div>
-            <Button onClick={() => store.createNewRoom()}
-                    className='Btn NewRoomBtn'>
-              Create new Room
-            </Button>
+        <div className='border rounded NewRoomContainer pt4 px2 center relative'>
+          <div className='NewRoomBtnContainer mx-auto'>
+            <div>
+              <Button onClick={() => store.createNewRoom()}
+                      className='Btn NewRoomBtn block'>
+                Create a room
+              </Button>
+              <div className='pt2 left-align'>
+                <JoinRoom store={store}/>
+              </div>
+            </div>
           </div>
-          <div className='pt2'>
-            {!store.hintVisible &&
-              <ActionLink onClick={() => store.showJoiningHint()}>
-                Looking to join an existing room?
-              </ActionLink>}
-            {store.hintVisible &&
-              <p className='subtle thin'>
-                {"If you're looking to join an existing room, ask the person who created it to share its URL with you."}
-              </p>}
-          </div>
+          <MyName store={store}/>
         </div>
       </div>
     </div>

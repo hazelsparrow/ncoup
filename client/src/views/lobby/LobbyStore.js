@@ -10,11 +10,11 @@ class LobbyStore {
 
   createNewRoom = action(async () => {
     const response = await api.post('rooms');
-    this.router.history.push(`/rooms/${response.data.id}`);
+    this.router.history.push(`/rooms/${response.data.key}`);
   });
 
-  showJoiningHint = action(async () => {
-    this.hintVisible = true;
+  toggleJoiningHint = action(async () => {
+    this.hintVisible = !this.hintVisible;
   });
 }
 

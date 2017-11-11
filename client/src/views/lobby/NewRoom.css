@@ -1,7 +1,77 @@
+.primary {
+  color: #1298f2; }
+
+.secondary {
+  color: #0d91b2; }
+
+.dark {
+  color: #085366; }
+
+.light {
+  color: #12c5f2; }
+
+.success {
+  color: #12f26c; }
+
+.subtle {
+  color: #6b717e; }
+
+.thin {
+  font-weight: 200; }
+
+body {
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px; }
+
+.border, .border-bottom, .border-top, .border-left, .border-right {
+  border-color: #d4d4d4; }
+
+.bg-haze {
+  background-color: #f8f8f8; }
+
+.Btn {
+  padding: 0.5rem;
+  border-radius: 2px;
+  background-color: #1298f2;
+  color: #fff;
+  border: 1px solid #0c8ade;
+  cursor: pointer;
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  transition: background-color ease 0.25s; }
+
+.Btn:hover {
+  background-color: #0c8ade;
+  border: 1px solid #0b7bc6; }
+
+.Btn:focus, .Btn:active {
+  outline: none;
+  background-color: #0c8ade;
+  border: 1px solid #0b7bc6; }
+
+.Btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default; }
+
+.App {
+  max-width: 1440px; }
+
+a, a:visited {
+  text-decoration: none;
+  color: #1298f2;
+  transition: background-color ease 0.25s; }
+
+a:hover {
+  text-decoration: underline;
+  color: #0b7bc6; }
+
 .NewRoomBtn {
   padding: 1rem;
   font-size: 28px;
-  width: 100%;
+  width: 100%; }
+
+.NewRoomBtnContainer {
   max-width: 400px; }
 
 .CoupHeader {
@@ -13,3 +83,18 @@
   border-top-left-radius: 0px;
   border-top: none;
   height: 240px; }
+
+.MyName {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem; }
+
+.NameChange {
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-bottom: -1px; }
+
+.NameChange:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted #085366; }
