@@ -1,5 +1,6 @@
 const express = require('express'),
       mongoose = require('mongoose'),
+      cors = require('cors'),
       app = express(),
       Promise = require('bluebird'),
       port = process.env.PORT || 3001;
@@ -10,14 +11,12 @@ mongoose.connect('mongodb://localhost/ncoup');
 
 app.listen(port);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
+app.use(express.json());
 
 const routes = [
-  require('./routes/rooms')
+  require('./routes/rooms'),
+  require('./routes/players')
 ];
 
 for (const route of routes) {

@@ -28,6 +28,8 @@ export default (WrappedComponent, Store) => {
         await this.store.load();
         this.ready = true;
       }
+
+      this.store.didMount && this.store.didMount();
     }
 
     render() {
