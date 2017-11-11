@@ -9,7 +9,7 @@ const AppPage = observer(() => {
     <Router>
       <Switch>
         <Route exact path='/' component={Lobby}/>
-        <Route path='/rooms/:id' component={Room}/>
+        <Route path='/rooms/:key' component={Room}/>
       </Switch>
     </Router>
   );

@@ -6,9 +6,7 @@ import AppPage from './views/AppPage';
 class App extends Component {
   render() {
     return (
-      <div className='p4'>
-        <AppPage/>
-      </div>
+      <AppPage/>
     );
   }
 }

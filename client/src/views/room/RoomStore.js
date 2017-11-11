@@ -9,8 +9,8 @@ class RoomStore {
   }
 
   load = action(async () => {
-    const {id} = this.router.match.params;
-    const response = await api.get(`rooms/${id}`);
+    const {key} = this.router.match.params;
+    const response = await api.get(`rooms/${key}`);
     this.message = response.data.message;
   })
 }

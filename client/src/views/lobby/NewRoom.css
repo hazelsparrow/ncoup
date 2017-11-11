@@ -1,0 +1,15 @@
+.NewRoomBtn {
+  padding: 1rem;
+  font-size: 28px;
+  width: 100%;
+  max-width: 400px; }
+
+.CoupHeader {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px; }
+
+.NewRoomContainer {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top: none;
+  height: 240px; }
