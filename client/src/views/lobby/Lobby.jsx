@@ -43,7 +43,7 @@ const MyName = observer(({store}) => {
     <div className='MyName h4 p1 border bg-haze'>
       <i className="fa fa-user" aria-hidden="true"></i>
       <ActionLink onClick={() => store.showChangeNameForm()} className='NameChange'>
-        {store.player.name}
+        <p className='truncate' style={{marginBottom: '-6px'}}>{store.player.name}</p>
       </ActionLink>
     </div>
   );

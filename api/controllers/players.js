@@ -26,9 +26,7 @@ module.exports.get = async function(request, response) {
 
 module.exports.post = async function(request, response) {
   const player = new Player(playerParams(request));
-  console.log(player);
   await player.save();
-  console.log(player);
 
   response.send(player);
 };
