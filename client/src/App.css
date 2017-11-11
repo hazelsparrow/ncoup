@@ -45,9 +45,11 @@ body {
   border: 1px solid #0b7bc6; }
 
 .Btn:focus, .Btn:active {
-  outline: none;
-  background-color: #0c8ade;
-  border: 1px solid #0b7bc6; }
+  outline: none; }
+
+.Btn:active {
+  background-color: #0a6cae;
+  border: 1px solid #085d96; }
 
 .Btn.disabled {
   opacity: 0.5;
@@ -60,8 +62,27 @@ body {
 a, a:visited {
   text-decoration: none;
   color: #1298f2;
-  transition: background-color ease 0.25s; }
+  transition: all ease 0.25s; }
 
 a:hover {
   text-decoration: underline;
   color: #0b7bc6; }
+
+input {
+  border: 1px solid #d8d8d8;
+  border-radius: 3px; }
+
+input[type=text] {
+  box-sizing: border-box; }
+
+p {
+  padding: 0;
+  margin: 0; }
+
+input:hover {
+  border: 1px solid #42adf5;
+  transition: all ease 0.25s; }
+
+input:focus {
+  outline: none;
+  border: 1px solid #1298f2; }

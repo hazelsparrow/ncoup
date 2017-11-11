@@ -4,7 +4,12 @@ import {api} from '../../core';
 class LobbyStore {
   constructor() {
     extendObservable(this, {
-      hintVisible: false
+      hintVisible: false,
+      nameChangeFormVisible: false,
+      player: {
+        id: '',
+        name: 'Anonymous'
+      }
     });
   }
 
@@ -16,6 +21,22 @@ class LobbyStore {
   toggleJoiningHint = action(async () => {
     this.hintVisible = !this.hintVisible;
   });
+
+  showChangeNameForm = action(async () => {
+    this.nameChangeFormVisible = true;
+  });
+
+  hideChangeNameForm = action(async () => {
+    this.nameChangeFormVisible = false;
+  });
+
+  updatePlayerName = action(name => {
+    this.player.name = name;
+  });
+
+  createOrUpdatePlayer() {
+
+  }
 }
 
 export default LobbyStore;

@@ -2,6 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import {Button, ActionLink} from '../../components';
 import './NewRoom.css';
+import ChangeMyName from './ChangeMyName';
 
 const Header = observer(() => {
   return (
@@ -39,11 +40,34 @@ const JoinRoom = observer(({store}) => {
 
 const MyName = observer(({store}) => {
   return (
-    <div className='MyName h4'>
-      <i class="fa fa-user" aria-hidden="true"></i>
-      <ActionLink onClick={() => store.showChangeNameForm()} className='NameChange'>Gregory</ActionLink>
+    <div className='MyName h4 p1 border bg-haze'>
+      <i className="fa fa-user" aria-hidden="true"></i>
+      <ActionLink onClick={() => store.showChangeNameForm()} className='NameChange'>
+        {store.player.name}
+      </ActionLink>
     </div>
   );
+});
+
+const FormContainer = observer(({store}) => {
+  if (store.nameChangeFormVisible) {
+    return <ChangeMyName store={store}/>
+  }
+
+  return [
+    <div className='NewRoomBtnContainer mx-auto'>
+      <div>
+        <Button onClick={() => store.createNewRoom()}
+                className='Btn NewRoomBtn block'>
+          Create a room
+        </Button>
+        <div className='pt2 left-align'>
+          <JoinRoom store={store}/>
+        </div>
+      </div>
+    </div>,
+    <MyName store={store}/>
+  ];
 });
 
 const Lobby = observer(({store}) => {
@@ -57,18 +81,7 @@ const Lobby = observer(({store}) => {
           </div>
         </div>
         <div className='border rounded NewRoomContainer pt4 px2 center relative'>
-          <div className='NewRoomBtnContainer mx-auto'>
-            <div>
-              <Button onClick={() => store.createNewRoom()}
-                      className='Btn NewRoomBtn block'>
-                Create a room
-              </Button>
-              <div className='pt2 left-align'>
-                <JoinRoom store={store}/>
-              </div>
-            </div>
-          </div>
-          <MyName store={store}/>
+          <FormContainer store={store}/>
         </div>
       </div>
     </div>

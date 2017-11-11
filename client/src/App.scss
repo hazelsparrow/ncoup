@@ -76,8 +76,11 @@ body {
 
 .Btn:focus, .Btn:active {
   outline: none;
-  background-color: darken($primary, 5%);
-  border: 1px solid darken($primary, 10%);
+}
+
+.Btn:active {
+  background-color: darken($primary, 15%);
+  border: 1px solid darken($primary, 20%);
 }
 
 .Btn.disabled {
@@ -93,10 +96,34 @@ body {
 a, a:visited {
   text-decoration: none;
   color: $primary;
-  transition: background-color ease 0.25s;
+  transition: all ease 0.25s;
 }
 
 a:hover {
   text-decoration: underline;
   color: darken($primary, 10%);
+}
+
+input {
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  box-sizing : border-box;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+input:hover {
+  border: 1px solid lighten($primary, 10%);
+  transition: all ease 0.25s;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid $primary;
 }
