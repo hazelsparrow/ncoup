@@ -1,0 +1,18 @@
+import {extendObservable, action} from 'mobx';
+import {api} from '../../core';
+
+class RoomStore {
+  constructor() {
+    extendObservable(this, {
+      message: ''
+    })
+  }
+
+  load = action(async () => {
+    const {id} = this.router.match.params;
+    const response = await api.get(`rooms/${id}`);
+    this.message = response.data.message;
+  })
+}
+
+export default RoomStore;
