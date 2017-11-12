@@ -1,7 +1,12 @@
 import React from 'react';
 import {observer} from 'mobx-react';
+import RoomNotFound from './RoomNotFound';
 
 const Room = observer(({store}) => {
+  if (store.notFound) {
+    return <RoomNotFound/>;
+  }
+
   return (
     <div className=''>
       <div className=''>
