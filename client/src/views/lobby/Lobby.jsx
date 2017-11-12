@@ -73,7 +73,7 @@ const FormContainer = observer(({store}) => {
 const Lobby = observer(({store}) => {
   return (
     <div className='clearfix mx-auto fit m2 px2'>
-      <div className='md-col-6 mx-auto'>
+      <div className='md-col-8 mx-auto'>
         <div className='border rounded bg-haze CoupHeader'>
           <div className='px2'>
             <Header/>

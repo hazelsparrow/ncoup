@@ -4,14 +4,17 @@ import {api} from '../../core';
 class RoomStore {
   constructor() {
     extendObservable(this, {
-      message: ''
+      notFound: false
     })
   }
 
   load = action(async () => {
     const {key} = this.router.match.params;
-    const response = await api.get(`rooms/${key}`);
-    this.message = response.data.message;
+    try {
+      const response = await api.get(`rooms/${key}`);
+    } catch (e) {
+      this.notFound = true;
+    }
   })
 }
 
