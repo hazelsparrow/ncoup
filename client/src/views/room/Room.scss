@@ -1,0 +1,16 @@
+.Player {
+  width: 160px;
+}
+
+.Player-waiting {
+  background-color: #fcfcfc;
+}
+
+.TurnInProgress {
+  animation: Player-status-spin infinite 6s linear;
+}
+
+@keyframes Player-status-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

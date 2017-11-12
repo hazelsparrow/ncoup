@@ -1,6 +1,10 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import RoomNotFound from './RoomNotFound';
+import Players from './Players';
+import GameLog from './GameLog';
+import Actions from './Actions';
+import './Room.css';
 
 const Room = observer(({store}) => {
   if (store.notFound) {
@@ -8,12 +12,13 @@ const Room = observer(({store}) => {
   }
 
   return (
-    <div className=''>
-      <div className=''>
-        Welcome to the room <b>{store.router.match.params.key}</b>!
-      </div>
-      <div className=''>
-        {store.message}
+    <div className='clearfix mx-auto fit m2 px2'>
+      <div className='md-col-8 mx-auto'>
+        <div className='border rounded bg-haze px2'>
+          <Players store={store}/>
+          <GameLog store={store}/>
+          <Actions store={store}/>
+        </div>
       </div>
     </div>
   );

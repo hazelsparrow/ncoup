@@ -21,13 +21,17 @@
 
 body {
   font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px; }
+  font-size: 14px;
+  color: #484c55; }
 
 .border, .border-bottom, .border-top, .border-left, .border-right {
   border-color: #d4d4d4; }
 
 .bg-haze {
   background-color: #f8f8f8; }
+
+.bg-white {
+  background-color: #fff; }
 
 .Btn {
   padding: 0.5rem;
@@ -86,3 +90,10 @@ input:hover {
 input:focus {
   outline: none;
   border: 1px solid #1298f2; }
+
+.faded {
+  opacity: 0.5;
+  transition: all ease 0.25s; }
+
+.highlight {
+  border: 1px solid #42d1f5; }
