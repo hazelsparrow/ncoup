@@ -3,7 +3,7 @@ import {observer} from 'mobx-react';
 
 const GameLog = observer(({}) => {
   return (
-    <div className='bg-white border p1 mt2'>
+    <div className='bg-white border-top p2 mt2'>
       fdsa
     </div>
   );

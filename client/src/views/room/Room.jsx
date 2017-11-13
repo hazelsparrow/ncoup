@@ -12,9 +12,9 @@ const Room = observer(({store}) => {
   }
 
   return (
-    <div className='clearfix mx-auto fit m2 px2'>
+    <div className='clearfix mx-auto fit m2'>
       <div className='md-col-8 mx-auto'>
-        <div className='border rounded bg-haze px2'>
+        <div className='border rounded bg-haze'>
           <Players store={store}/>
           <GameLog store={store}/>
           <Actions store={store}/>

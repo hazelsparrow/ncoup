@@ -31,7 +31,7 @@ const HARDCODED_PLAYERS = [
 
 const Players = observer(({store}) => {
   return (
-    <div className=''>
+    <div className='px2'>
       {HARDCODED_PLAYERS.map(p => <Player player={p} store={store}/>)}
     </div>
   );
