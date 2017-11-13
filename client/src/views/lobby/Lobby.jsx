@@ -3,6 +3,7 @@ import {observer} from 'mobx-react';
 import {Button, ActionLink} from '../../components';
 import './NewRoom.css';
 import ChangeMyName from './ChangeMyName';
+import Credit from './Credit';
 
 const Header = observer(() => {
   return (
@@ -83,6 +84,7 @@ const Lobby = observer(({store}) => {
         <div className='border rounded NewRoomContainer pt4 px2 center relative'>
           <FormContainer store={store}/>
         </div>
+        <Credit/>
       </div>
     </div>
   );

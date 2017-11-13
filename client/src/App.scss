@@ -38,6 +38,10 @@ $text-light: #fff;
   color: $text-subtle;
 }
 
+.text-primary {
+  color: $text-primary !important;
+}
+
 // font weight
 .thin {
   font-weight: 200;
