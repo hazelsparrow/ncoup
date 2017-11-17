@@ -5,10 +5,10 @@ import _ from 'lodash';
 
 export default (WrappedComponent, Store) => {
   return observer(class extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
-      const store = new Store();
+      const store = new Store(props.store);
       extendObservable(this, {
         store,
         ready: !store.load

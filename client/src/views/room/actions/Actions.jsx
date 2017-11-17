@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {Button} from '../../components';
+import {Button} from '../../../components';
 
 const Actions = observer(({store}) => {
   return (
