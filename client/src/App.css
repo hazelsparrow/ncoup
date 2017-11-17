@@ -19,6 +19,9 @@
 .text-primary {
   color: #484c55 !important; }
 
+.white {
+  color: #fff; }
+
 .thin {
   font-weight: 200; }
 
@@ -32,6 +35,18 @@ body {
 
 .bg-haze {
   background-color: #f8f8f8; }
+
+.bg-dark {
+  background-color: #085366; }
+
+.bg-primary {
+  background-color: #1298f2; }
+
+.bg-secondary {
+  background-color: #0d91b2; }
+
+.bg-secondary {
+  background-color: #0d91b2; }
 
 .bg-white {
   background-color: #fff; }
@@ -100,3 +115,6 @@ input:focus {
 
 .highlight {
   border: 1px solid #42d1f5; }
+
+.box-shadow {
+  box-shadow: 2px 2px 5px #dedede; }

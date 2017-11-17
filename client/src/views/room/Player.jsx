@@ -32,15 +32,19 @@ const PlayerStatus = observer(({player}) => {
 
 const Player = observer(({player, store}) => {
   return (
-    <div className={`Player inline-block border center mr2 mt2 ${CONTAINER_CLASS_BY_STATUS[player.status]}`}>
+    <div className={`Player inline-block border rounded box-shadow center mr2 mt2 ${CONTAINER_CLASS_BY_STATUS[player.status]}`}>
       <PlayerStatus player={player}/>
       <p className='truncate h4 bold secondary'>{player.name}</p>
       <div className='border-top mt1'>
         <div className='col col-6 border-right'>
-          {player.cards}
+          <div className='p1 h3'>
+            {player.cards}
+          </div>
         </div>
         <div className='col col-6'>
-          {player.coins}
+          <div className='p1 h3'>
+            {player.coins}
+          </div>
         </div>
       </div>
     </div>
