@@ -38,6 +38,14 @@ $text-light: #fff;
   color: $text-subtle;
 }
 
+.text-primary {
+  color: $text-primary !important;
+}
+
+.white {
+  color: #fff;
+}
+
 // font weight
 .thin {
   font-weight: 200;
@@ -55,6 +63,22 @@ body {
 
 .bg-haze {
   background-color: #f8f8f8;
+}
+
+.bg-dark {
+  background-color: $dark;
+}
+
+.bg-primary {
+  background-color: $primary;
+}
+
+.bg-secondary {
+  background-color: $secondary;
+}
+
+.bg-secondary {
+  background-color: $secondary;
 }
 
 .bg-white {
@@ -140,4 +164,8 @@ input:focus {
 
 .highlight {
   border: 1px solid lighten($light, 10%);
+}
+
+.box-shadow {
+  box-shadow: 2px 2px 5px #dedede;
 }

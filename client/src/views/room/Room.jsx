@@ -3,7 +3,7 @@ import {observer} from 'mobx-react';
 import RoomNotFound from './RoomNotFound';
 import Players from './Players';
 import GameLog from './GameLog';
-import Actions from './Actions';
+import Actions from './actions';
 import './Room.css';
 
 const Room = observer(({store}) => {
@@ -14,8 +14,8 @@ const Room = observer(({store}) => {
   return (
     <div className='clearfix mx-auto fit m2 px2'>
       <div className='md-col-8 mx-auto'>
-        <div className='border rounded bg-haze px2'>
-          <Players store={store}/>
+        <Players store={store}/>
+        <div className='border rounded box-shadow'>
           <GameLog store={store}/>
           <Actions store={store}/>
         </div>
