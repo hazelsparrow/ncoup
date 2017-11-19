@@ -18,7 +18,8 @@ const LogEntry = observer(({entry}) => {
   );
 });
 
-const GameLog = observer(({}) => {
+const GameLog = observer(({store}) => {
+  console.log(store);
   return (
     <div className='bg-white p2 GameLog'>
       {HARDCODED_LOG.map(l => <LogEntry entry={l}/>)}
