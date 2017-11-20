@@ -1,11 +1,13 @@
 import {extendObservable, action} from 'mobx';
 import {api} from '../../core';
+import game from '../../game';
 
 class RoomStore {
   constructor() {
     extendObservable(this, {
-      notFound: false
-    })
+      notFound: false,
+      game
+    });
   }
 
   load = action(async () => {

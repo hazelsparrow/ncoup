@@ -1,11 +1,28 @@
-import GameClient from './GameClient';
+import io from 'socket.io-client';
+import {extendObservable} from 'mobx';
 
 class Game {
   client;
 
+  constructor() {
+    extendObservable(this, {
+      messages: []
+    });
+  }
+
   connect() {
-    this.client = new GameClient();
-    this.client.connect();
+    this.socket = io('http://localhost:3001');
+
+    this.socket.on('connect', () => this.onConnected());
+    this.socket.on('player_connected', player => this.onPlayerConnected(player));
+  }
+
+  onConnected() {
+    this.socket.emit('auth', window.localStorage.getItem('ncoupPlayerId'));
+  }
+
+  onPlayerConnected(player) {
+    this.messages.push(`${player.name} connected.`);
   }
 }
 
