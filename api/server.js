@@ -1,11 +1,11 @@
 const express = require('express'),
       mongoose = require('mongoose'),
+      Promise = require('bluebird'),
       cors = require('cors'),
       app = express(),
-      Promise = require('bluebird'),
+      server = require('http').Server(app),
+      io = require('socket.io')(server),
       setupRoutes = require('./routes'),
-      http = require('http').Server(app),
-      io = require('socket.io')(http),
 
       port = process.env.PORT || 3001;
 
@@ -13,7 +13,8 @@ mongoose.Promise = Promise;
 
 mongoose.connect('mongodb://localhost/ncoup');
 
-app.listen(port);
+server.listen(port);
+// io.listen(3002);
 
 app.use(cors({
   origin: 'http://localhost:3000'

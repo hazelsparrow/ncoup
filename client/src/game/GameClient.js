@@ -8,7 +8,6 @@ class GameClient {
       path: '/socket.io',
       transports: ['websocket']
     });
-    // this.socket.connect();
   }
 }
 
