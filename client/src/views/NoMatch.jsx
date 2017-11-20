@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 
-const NoMatch = observer(({}) => {
+const NoMatch = observer(() => {
   return (
     <div className='clearfix mx-auto fit m2 px2'>
       <div className='col md-col-4'>
