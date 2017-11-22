@@ -4,9 +4,8 @@ const express = require('express'),
       cors = require('cors'),
       app = express(),
       server = require('http').Server(app),
-      io = require('socket.io')(server),
+      io = require('./ws')(server),
       setupRoutes = require('./routes'),
-      Player = require('./models/Player'),
 
       port = process.env.PORT || 3001;
 
@@ -23,14 +22,5 @@ app.use(express.json());
 
 setupRoutes(app);
 
-io.on('connection', function(socket) {
-  socket.on('auth', async function(userId) {
-    console.log(userId);
-    socket.player = await Player.findById(userId);
-    console.log(socket.player);
-    console.log('connected player: ' + socket.player.name);
-    io.emit('player_connected', socket.player);
-  });
-});
 
 console.log('Running API server on: http://localhost:' + port);
