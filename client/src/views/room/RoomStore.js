@@ -12,6 +12,8 @@ class RoomStore {
 
   load = action(async () => {
     const {key} = this.router.match.params;
+    this.game.roomId = key;
+
     try {
       const response = await api.get(`rooms/${key}`);
       console.log(response);

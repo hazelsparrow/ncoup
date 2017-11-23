@@ -4,7 +4,6 @@ const socketIo = require('socket.io'),
 function setup(server) {
   const io = socketIo(server);
 
-  // io.on('connection', socket => onConnection(io, socket));
   onConnection(io);
 }
 
