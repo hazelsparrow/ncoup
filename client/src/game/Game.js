@@ -3,6 +3,7 @@ import {extendObservable} from 'mobx';
 
 class Game {
   client;
+  roomId;
 
   constructor() {
     extendObservable(this, {
@@ -18,7 +19,11 @@ class Game {
   }
 
   onConnected() {
-    this.socket.emit('auth', window.localStorage.getItem('ncoupPlayerId'));
+    this.socket.emit(
+      'auth',
+      window.localStorage.getItem('ncoupPlayerId'),
+      this.roomId
+    );
   }
 
   onPlayerConnected(player) {
