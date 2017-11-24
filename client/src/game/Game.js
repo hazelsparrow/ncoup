@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-import {extendObservable} from 'mobx';
+import {observable, extendObservable} from 'mobx';
+import Player from './Player';
 
 class Game {
   client;
@@ -7,7 +8,8 @@ class Game {
 
   constructor() {
     extendObservable(this, {
-      messages: []
+      messages: [],
+      players: []
     });
   }
 
@@ -28,6 +30,7 @@ class Game {
 
   onPlayerConnected(player) {
     this.messages.push(`${player.name} connected.`);
+    this.players.push(new Player(player));
   }
 }
 
