@@ -1,5 +1,3 @@
-import Actions from './Actions';
-import ActionStore from './ActionStore';
-import {withStore} from '../../../core';
+import Action from './Action';
 
-export default withStore(Actions, ActionStore);
+export default Action;

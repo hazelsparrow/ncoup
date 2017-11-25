@@ -16,7 +16,6 @@ class RoomStore {
 
     try {
       const response = await api.get(`rooms/${key}`);
-      console.log(response);
     } catch (e) {
       this.notFound = true;
     }
