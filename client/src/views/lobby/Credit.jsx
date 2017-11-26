@@ -8,11 +8,11 @@ const Credit = observer(() => {
       <a href='https://github.com/hazelsparrow/ncoup'
          title='View source on Github'
          className='text-primary'>
-        <i class="fa fa-github" aria-hidden="true"></i>
+        <i className="fa fa-github" aria-hidden="true"></i>
       </a>&nbsp;|&nbsp;
       <a href='https://www.linkedin.com/in/gregoryvorobyev/'
          title='Greg Vorobyev on LinkedIn'>
-        <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        <i className="fa fa-linkedin-square" aria-hidden="true"></i>
       </a>
     </div>
   );

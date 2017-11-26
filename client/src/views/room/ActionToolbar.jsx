@@ -5,7 +5,7 @@ import Action from './actions';
 const ActionToolbar = observer(({store}) => {
   return (
     <div className='bg-white border-top p2'>
-      {store.game.actions.map(a => <Action action={a} store={store}/>)}
+      {store.game.actions.map(a => <Action key={a.id} action={a} store={store}/>)}
     </div>
   );
 });

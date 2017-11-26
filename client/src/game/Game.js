@@ -3,6 +3,7 @@ import {observable, extendObservable, computed, action} from 'mobx';
 import Player from './Player';
 import _ from 'lodash';
 import ACTION_TYPES from './actionTypes';
+import Action from './Action';
 
 const GAME_STATUS = {
   WAITING_TO_START: 'WAITING_TO_START',
@@ -23,11 +24,11 @@ function waitingToStartActions(game) {
     {
       name: 'Leave',
       type: ACTION_TYPES.ABANDON_GAME,
-      execute: function(game) {
-        game.endGame();
-      }
+      // execute: function(game) {
+      //   game.endGame();
+      // }
     }
-  ]
+  ].map(i => new Action(i));
 }
 
 class Game {
@@ -79,6 +80,13 @@ class Game {
     window.location = '/';
   });
 
+  send(action) {
+    this.socket.emit(
+      'action',
+      action
+    );
+  }
+
   // computed
 
   getActions() {
@@ -94,7 +102,6 @@ class Game {
   getSelf() {
     return _.find(this.players, {id: this.selfId});
   }
-
 }
 
 const singleton = new Game();
