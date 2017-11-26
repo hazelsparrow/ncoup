@@ -1,0 +1,21 @@
+.Action--start-game {
+  background-color: #1298f2;
+  border: darken(#1298f2, 10%);
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: darken(#1298f2, 5%);
+    border: darken(#1298f2, 20%);
+  }
+}
+
+.Action--abandon-game {
+  background-color: #ef4410;
+  border: darken(#ef4410, 10%);
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: darken(#ef4410, 5%);
+    border: darken(#ef4410, 20%);
+  }
+}
