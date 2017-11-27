@@ -13,6 +13,10 @@ class Model {
     _.merge(this, partialModel);
   })
 
+  get id() {
+    return this._id;
+  }
+
   toJS() {
     return toJS(this);
   }

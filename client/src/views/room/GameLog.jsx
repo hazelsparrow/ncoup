@@ -1,14 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-
-// const HARDCODED_LOG = [
-//   {
-//     'text': 'The game has commenced.'
-//   },
-//   {
-//     'text': 'Greg takes three coins.'
-//   }
-// ]
+import GAME_STATUS from '../../game/gameStatus';
 
 const LogEntry = observer(({entry}) => {
   return (
@@ -19,7 +11,8 @@ const LogEntry = observer(({entry}) => {
 });
 
 const GameLog = observer(({store}) => {
-  // console.log(store);
+  if (store.game.status === GAME_STATUS.LOADING) return null;
+
   return (
     <div className='bg-white p2 GameLog'>
       {store.game.messages.map(m => <LogEntry entry={m}/>)}

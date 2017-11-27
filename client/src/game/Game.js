@@ -2,35 +2,18 @@ import io from 'socket.io-client';
 import {observable, extendObservable, computed, action} from 'mobx';
 import Player from './Player';
 import _ from 'lodash';
-import ACTION_TYPES from './actionTypes';
 import Action from './Action';
 import STATUS_MESSAGES from './statusMessages';
+import GAME_STATUS from './gameStatus';
+import {
+  abandonGame,
+  startGame
+} from './actionCreators';
 
-const GAME_STATUS = {
-  WAITING_TO_START: 'WAITING_TO_START',
-  IN_PROGRESS: 'IN_PROGRESS',
-  FINISHED: 'FINISHED'
-};
-
-function waitingToStartActions(game) {
-  return [
-    {
-      name: 'Start game',
-      type: ACTION_TYPES.START_GAME,
-      disabled: true,
-      execute: function(game) {
-        game.startGame();
-      }
-    },
-    {
-      name: 'Leave',
-      type: ACTION_TYPES.ABANDON_GAME,
-      // execute: function(game) {
-      //   game.endGame();
-      // }
-    }
-  ].map(i => new Action(i));
+function concatActions(...rest) {
+  return _.map([...rest], i => new Action(i));
 }
+
 
 class Game {
   client;
@@ -43,8 +26,10 @@ class Game {
       players: [],
       actions: computed(() => this.getActions()),
       self: computed(() => this.getSelf()),
-      status: GAME_STATUS.WAITING_TO_START,
-      statusMessage: STATUS_MESSAGES.WAITING_TO_START
+      isOwner: computed(() => this.getIsOwner()),
+      waitingToStartActions: computed(() => this.getWaitingToStartActions()),
+      status: GAME_STATUS.LOADING,
+      statusMessage: STATUS_MESSAGES.CONNECTING
     });
   }
 
@@ -60,11 +45,14 @@ class Game {
   }
 
   onConnected() {
+    setTimeout(() => {
+
     this.socket.emit(
       'auth',
       this.selfId,
       this.roomId
     );
+  }, 2000)
   }
 
   onPlayerConnected(player) {
@@ -72,6 +60,10 @@ class Game {
 
     this.messages.push(`${newPlayer.name} connected.`);
     this.players.push(newPlayer);
+
+    if (newPlayer.id === this.selfId) {
+      this.status = GAME_STATUS.WAITING_TO_START;
+    }
   }
 
   startGame = action(() => {
@@ -93,9 +85,10 @@ class Game {
 
   getActions() {
     switch (this.status) {
+      case 'LOADING':
+        return [];
       case 'WAITING_TO_START':
-        return waitingToStartActions(this);
-        break;
+        return this.waitingToStartActions;
       default:
         throw new Error(`Game status ${this.status} is not supported.`);
     }
@@ -103,6 +96,26 @@ class Game {
 
   getSelf() {
     return _.find(this.players, {id: this.selfId});
+  }
+
+  getIsOwner() {
+    if (!this.players.length || !this.self) return false;
+
+    return this.self.id === this.players[0].id;
+  }
+
+  getWaitingToStartActions() {
+    console.log('hey')
+    if (this.isOwner) {
+      return concatActions(
+        abandonGame(this),
+        startGame(this)
+      );
+    }
+
+    return concatActions(
+      abandonGame(this)
+    );
   }
 }
 

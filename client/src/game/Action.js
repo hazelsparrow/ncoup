@@ -6,13 +6,13 @@ class Action extends Model {
   name;
   type;
 
-  constructor(other) {
+  constructor(other, game) {
     super(other);
 
     extendObservable(this, {
       actor: {},
       target: {},
-      disabled: false
+      disabled: other.disabled || false
     });
   }
 
