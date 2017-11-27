@@ -1,0 +1,22 @@
+.Action--start-game {
+  background-color: #1298f2;
+  border: #0b7bc6;
+  color: #fff; }
+  .Action--start-game:hover, .Action--start-game:active {
+    background-color: #0c8ade;
+    border: #085d96; }
+
+.Action--abandon-game {
+  background-color: #ef4410;
+  border: #bf360d;
+  color: #fff; }
+  .Action--abandon-game:hover, .Action--abandon-game:active {
+    background-color: #d73d0e;
+    border: #8f290a; }
+
+@media (max-width: 40em) {
+  .Action {
+    padding-right: 1rem;
+    display: block; }
+    .Action .Action-btn {
+      width: 100%; } }

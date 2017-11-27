@@ -78,6 +78,10 @@ body {
   pointer-events: none;
   cursor: default; }
 
+.Btn--small {
+  padding: 0.25rem;
+  font-size: 12px; }
+
 .App {
   max-width: 1440px; }
 

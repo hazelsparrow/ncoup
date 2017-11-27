@@ -118,6 +118,21 @@ body {
   cursor: default;
 }
 
+.Btn--small {
+  padding: 0.25rem;
+  font-size: 12px;
+}
+
+// .Btn--white {
+//   background-color: white;
+//   color: $text-primary;
+//   border-color: 1px solid #d4d4d4;
+// }
+//
+// .Btn--white:hover {
+//   background-color: #f8f8f8;
+// }
+
 .App {
   max-width: 1440px;
 }

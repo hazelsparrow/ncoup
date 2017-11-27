@@ -20,7 +20,7 @@ class LobbyStore {
 
   createNewRoom = action(async () => {
     const response = await api.post('rooms');
-    this.router.history.push(`/rooms/${response.data.key}`);
+    window.location = `/rooms/${response.data.key}`;
   });
 
   toggleJoiningHint = action(async () => {

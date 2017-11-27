@@ -7,6 +7,7 @@ class Player extends Model {
 
     extendObservable({
       name: '',
+      status: 'waiting',
       coins: 2,
       cards: 2
     });
