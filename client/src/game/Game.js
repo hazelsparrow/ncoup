@@ -41,7 +41,8 @@ class Game {
     }
 
     this.socket.on('connect', () => this.onConnected());
-    this.socket.on('player_connected', player => this.onPlayerConnected(player));
+    this.socket.on('player_connected', payload => this.onPlayerConnected(payload));
+    this.socket.on('player_left', payload => this.onPlayerLeft(payload));
   }
 
   onConnected() {
@@ -53,6 +54,10 @@ class Game {
   }
 
   onPlayerConnected({room, player}) {
+    if (!this.room) {
+      this.room = room;
+    }
+
     const newPlayer = new Player(player);
 
     this.messages.push(`${newPlayer.name} connected.`);
@@ -62,6 +67,13 @@ class Game {
       this.status = GAME_STATUS.WAITING_TO_START;
       this.statusMessage = STATUS_MESSAGES.WAITING_TO_START;
     }
+  }
+
+  onPlayerLeft({room, player}) {
+    const goner = new Player(player);
+
+    this.messages.push(`${goner.name} left the game.`);
+    this.players = room.players.map(p => new Player(p));
   }
 
   startGame = action(() => {
@@ -103,7 +115,6 @@ class Game {
   }
 
   getWaitingToStartActions() {
-    console.log('hey')
     if (this.isOwner) {
       return concatActions(
         startGame(this),

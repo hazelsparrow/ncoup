@@ -8,6 +8,7 @@ function onAuth(io, socket) {
     if (!room || !player) return;
 
     socket.player = player;
+    socket.roomId = room.id;
     if (!room.players.length) {
       room.ownerId = player.id;
     }
@@ -15,7 +16,7 @@ function onAuth(io, socket) {
       room.players.push(player);
     }
     await room.save();
-    
+
     const roomHandle = `room-${room.id}`;
     socket.join(roomHandle);
     io.to(roomHandle).emit('player_connected', {
