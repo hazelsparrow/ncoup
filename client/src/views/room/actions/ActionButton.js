@@ -5,11 +5,13 @@ import './index.css';
 
 const ActionButton = observer(({onClick, children, className, disabled = false}) => {
   return (
-    <Button onClick={onClick}
-            disabled={disabled}
-            className={`Btn ${className}`}>
-      {children}
-    </Button>
+    <div className='Action pl2 pt2 inline-block'>
+      <Button onClick={onClick}
+              disabled={disabled}
+              className={`Btn Action-btn ${className}`}>
+        {children}
+      </Button>
+    </div>
   );
 });
 
