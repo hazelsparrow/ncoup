@@ -45,24 +45,22 @@ class Game {
   }
 
   onConnected() {
-    setTimeout(() => {
-
     this.socket.emit(
       'auth',
       this.selfId,
       this.roomId
     );
-  }, 2000)
   }
 
-  onPlayerConnected(player) {
+  onPlayerConnected({room, player}) {
     const newPlayer = new Player(player);
 
     this.messages.push(`${newPlayer.name} connected.`);
-    this.players.push(newPlayer);
+    this.players = room.players.map(p => new Player(p));
 
     if (newPlayer.id === this.selfId) {
       this.status = GAME_STATUS.WAITING_TO_START;
+      this.statusMessage = STATUS_MESSAGES.WAITING_TO_START;
     }
   }
 
@@ -85,9 +83,9 @@ class Game {
 
   getActions() {
     switch (this.status) {
-      case 'LOADING':
+      case GAME_STATUS.LOADING:
         return [];
-      case 'WAITING_TO_START':
+      case GAME_STATUS.WAITING_TO_START:
         return this.waitingToStartActions;
       default:
         throw new Error(`Game status ${this.status} is not supported.`);
@@ -108,8 +106,8 @@ class Game {
     console.log('hey')
     if (this.isOwner) {
       return concatActions(
-        abandonGame(this),
-        startGame(this)
+        startGame(this),
+        abandonGame(this)
       );
     }
 
