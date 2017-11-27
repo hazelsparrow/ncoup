@@ -1,0 +1,5 @@
+const STATUS_MESSAGES = {
+  WAITING_TO_START: 'WAITING_TO_START',
+};
+
+export default STATUS_MESSAGES;

@@ -4,6 +4,7 @@ import Player from './Player';
 import _ from 'lodash';
 import ACTION_TYPES from './actionTypes';
 import Action from './Action';
+import STATUS_MESSAGES from './statusMessages';
 
 const GAME_STATUS = {
   WAITING_TO_START: 'WAITING_TO_START',
@@ -42,7 +43,8 @@ class Game {
       players: [],
       actions: computed(() => this.getActions()),
       self: computed(() => this.getSelf()),
-      status: GAME_STATUS.WAITING_TO_START
+      status: GAME_STATUS.WAITING_TO_START,
+      statusMessage: STATUS_MESSAGES.WAITING_TO_START
     });
   }
 

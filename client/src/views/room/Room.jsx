@@ -4,6 +4,7 @@ import RoomNotFound from './RoomNotFound';
 import Players from './Players';
 import GameLog from './GameLog';
 import ActionToolbar from './ActionToolbar';
+import StatusMessage from './statusMessages';
 import './Room.css';
 
 const Room = observer(({store}) => {
@@ -17,6 +18,7 @@ const Room = observer(({store}) => {
         <Players store={store}/>
         <div className='border rounded box-shadow'>
           <GameLog store={store}/>
+          <StatusMessage store={store}/>
           <ActionToolbar store={store}/>
         </div>
       </div>
