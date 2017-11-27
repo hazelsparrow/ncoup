@@ -60,7 +60,7 @@ class Game {
 
     const newPlayer = new Player(player);
 
-    this.messages.push(`${newPlayer.name} connected.`);
+    this.messages.push(`${newPlayer.name} has connected.`);
     this.players = room.players.map(p => new Player(p));
 
     if (newPlayer.id === this.selfId) {
@@ -72,7 +72,7 @@ class Game {
   onPlayerLeft({room, player}) {
     const goner = new Player(player);
 
-    this.messages.push(`${goner.name} left the game.`);
+    this.messages.push(`${goner.name} has left the game.`);
     this.players = room.players.map(p => new Player(p));
   }
 
@@ -111,7 +111,7 @@ class Game {
   getIsOwner() {
     if (!this.players.length || !this.self) return false;
 
-    return this.self.id === this.players[0].id;
+    return this.self.id === this.room.ownerId;
   }
 
   getWaitingToStartActions() {

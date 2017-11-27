@@ -7,9 +7,11 @@
     "bluebird": "^3.5.1",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "lodash": "^4.17.4",
     "mongoose": "^4.13.1",
     "nodemon": "^1.12.1",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "socket.io": "^2.0.4"
   },
   "scripts": {
     "start": "nodemon server.js"

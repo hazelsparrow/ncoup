@@ -1,4 +1,5 @@
-const {Room} = require('../models');
+const {Room} = require('../models'),
+      _ = require('lodash');
 
 function onDisconnect(io, socket) {
   socket.on('disconnect', async function() {
