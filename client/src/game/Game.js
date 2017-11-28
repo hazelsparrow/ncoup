@@ -28,6 +28,7 @@ class Game {
       self: computed(() => this.getSelf()),
       isOwner: computed(() => this.getIsOwner()),
       waitingToStartActions: computed(() => this.getWaitingToStartActions()),
+      sortedMessages: computed(() => [...this.messages].reverse()),
       status: GAME_STATUS.LOADING,
       statusMessage: STATUS_MESSAGES.CONNECTING
     });
