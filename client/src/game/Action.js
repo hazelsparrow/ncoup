@@ -4,7 +4,7 @@ import {Model} from '../core';
 
 class Action extends Model {
   name;
-  type;
+  actionType;
 
   constructor(other, game) {
     super(other);
