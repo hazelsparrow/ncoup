@@ -9,6 +9,7 @@ function onAction(io, socket) {
     const room = await Room.findById(socket.roomId);
     handleAction(action, room);
     room.currentAction = action;
+    room.actions.push(action);
     await room.save();
 
     io.to(`room-${room.id}`).emit('action_taken', {
