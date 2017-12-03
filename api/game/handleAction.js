@@ -16,30 +16,18 @@ function startGame(action, room) {
 }
 
 function takeOneCoin(action, room) {
-  console.log(action);
   const actor = _.find(room.players, p => p._id.equals(action.actor._id));
-  console.log(room.players);
-  console.log(action.actor._id)
-  console.log(actor);
   actor.coins += 1;
 }
 
 function takeTwoCoins(action, room) {
-  console.log(action);
-  const actor = _.find(room.players, {_id: action.actor._id});
-  console.log(room.players);
-  console.log(action.actor._id)
-  console.log(actor);
-  actor.coins += 1;
+  const actor = _.find(room.players, p => p._id.equals(action.actor._id));
+  actor.coins += 2;
 }
 
 function takeThreeCoins(action, room) {
-  console.log(action);
-  const actor = _.find(room.players, {_id: action.actor._id});
-  console.log(room.players);
-  console.log(action.actor._id)
-  console.log(actor);
-  actor.coins += 1;
+  const actor = _.find(room.players, p => p._id.equals(action.actor._id));
+  actor.coins += 3;
 }
 
 function handleAction(action, room) {
