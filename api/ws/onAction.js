@@ -4,7 +4,6 @@ const {Room} = require('../models'),
 
 function onAction(io, socket) {
   socket.on('action', async function(action) {
-    console.log('===== HANDLING ACTION')
     if (!validateAction(action)) return null;
 
     const room = await Room.findById(socket.roomId);

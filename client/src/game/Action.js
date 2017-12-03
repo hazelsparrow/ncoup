@@ -1,5 +1,4 @@
 import {extendObservable, action} from 'mobx';
-import ACTION_TYPES from './actionTypes';
 import {Model} from '../core';
 
 class Action extends Model {

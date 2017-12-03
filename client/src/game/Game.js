@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import {observable, extendObservable, computed, action} from 'mobx';
+import {extendObservable, computed, action} from 'mobx';
 import Player from './Player';
 import _ from 'lodash';
 import Action from './Action';
