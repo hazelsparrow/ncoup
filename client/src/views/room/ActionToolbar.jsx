@@ -4,10 +4,10 @@ import Action from './actions';
 
 const ActionToolbar = observer(({store}) => {
   if (!store.game.actions.length) return null;
-  
+
   return (
     <div className='bg-white border-top pb2'>
-      {store.game.actions.map(a => <Action key={a.id} action={a} store={store}/>)}
+      {store.game.actions.map(a => <Action key={a.actionType} action={a} store={store}/>)}
     </div>
   );
 });

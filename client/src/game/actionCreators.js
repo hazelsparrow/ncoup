@@ -6,9 +6,6 @@ function startGame(game) {
     name: 'Start game',
     actionType: ACTION_TYPES.START_GAME,
     disabled: game.players.length <= 1
-    // execute: function(game) {
-    //   game.send(this)
-    // }
   };
 }
 
@@ -22,7 +19,63 @@ function abandonGame(game) {
   };
 }
 
+function takeOneCoin(game) {
+  return {
+    name: 'I take one coin',
+    actionType: ACTION_TYPES.ONE_COIN
+  }
+}
+
+function takeTwoCoins(game) {
+  return {
+    name: 'I take two coins',
+    actionType: ACTION_TYPES.TWO_COINS
+  }
+}
+
+function takeThreeCoins(game) {
+  return {
+    name: 'I take three coins',
+    actionType: ACTION_TYPES.THREE_COINS
+  }
+}
+
+function coup(game) {
+  return {
+    name: 'Coup!',
+    actionType: ACTION_TYPES.COUP
+  }
+}
+
+function assassinate(game) {
+  return {
+    name: 'I assassinate...',
+    actionType: ACTION_TYPES.ASSASSINATE
+  }
+}
+
+function steal(game) {
+  return {
+    name: 'I steal two coins from...',
+    actionType: ACTION_TYPES.STEAL
+  }
+}
+
+function changeCards(game) {
+  return {
+    name: 'I change my cards',
+    actionType: ACTION_TYPES.CHANGE_CARDS
+  }
+}
+
 export {
   startGame,
-  abandonGame
+  abandonGame,
+  takeOneCoin,
+  takeTwoCoins,
+  takeThreeCoins,
+  coup,
+  assassinate,
+  steal,
+  changeCards
 }

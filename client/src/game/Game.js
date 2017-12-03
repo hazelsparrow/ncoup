@@ -2,17 +2,22 @@ import io from 'socket.io-client';
 import {extendObservable, computed, action} from 'mobx';
 import Player from './Player';
 import _ from 'lodash';
+import uuid from 'uuid';
 import Action from './Action';
 import STATUS_MESSAGES from './statusMessages';
 import GAME_STATUS from './gameStatus';
 import {
   abandonGame,
-  startGame
+  startGame,
+  takeOneCoin,
+  takeTwoCoins,
+  takeThreeCoins,
+  coup,
+  assassinate,
+  steal,
+  changeCards
 } from './actionCreators';
 
-function concatActions(...rest) {
-  return _.map([...rest], i => new Action(i));
-}
 
 
 class Game {
@@ -29,6 +34,7 @@ class Game {
       isOwner: computed(() => this.getIsOwner()),
       waitingToStartActions: computed(() => this.getWaitingToStartActions()),
       sortedMessages: computed(() => [...this.messages].reverse()),
+      allowedActions: computed(() => this.getAllowedActions()),
       status: GAME_STATUS.LOADING,
       statusMessage: STATUS_MESSAGES.CONNECTING
     });
@@ -57,6 +63,10 @@ class Game {
 
   refreshRoom(room) {
     this.players = room.players.map(p => new Player(p));
+    if (room.actions.length) {
+      this.status = GAME_STATUS.IN_PROGRESS;
+    }
+    console.log(this.status);
   }
 
   onPlayerConnected({room, player}) {
@@ -66,7 +76,7 @@ class Game {
 
     const newPlayer = new Player(player);
 
-    this.messages.push(`${newPlayer.name} has connected.`);
+    this.addLogEntry(`${newPlayer.name} has connected.`);
     this.refreshRoom(room);
 
     if (newPlayer.id === this.selfId) {
@@ -78,8 +88,16 @@ class Game {
   onPlayerLeft({room, player}) {
     const goner = new Player(player);
 
-    this.messages.push(`${goner.name} has left the game.`);
+    this.addLogEntry(`${goner.name} has left the game.`);
     this.players = room.players.map(p => new Player(p));
+  }
+
+  addLogEntry(text) {
+    this.messages.push({
+      key: uuid.v4(),
+      text,
+      timeStamp: new Date()
+    });
   }
 
   onActionTaken({room}) {
@@ -97,6 +115,15 @@ class Game {
     );
   }
 
+  concatActions(...rest) {
+    const array = [...rest][0];
+    if (_.isArray(array)) {
+      return _.map([...array], i => new Action(i(this), this));
+    }
+
+    return _.map([...rest], i => new Action(i(this), this));
+  }
+
   // computed
 
   getActions() {
@@ -105,6 +132,8 @@ class Game {
         return [];
       case GAME_STATUS.WAITING_TO_START:
         return this.waitingToStartActions;
+      case GAME_STATUS.IN_PROGRESS:
+        return this.allowedActions;
       default:
         throw new Error(`Game status ${this.status} is not supported.`);
     }
@@ -122,15 +151,45 @@ class Game {
 
   getWaitingToStartActions() {
     if (this.isOwner) {
-      return concatActions(
-        startGame(this),
-        abandonGame(this)
+      return this.concatActions(
+        startGame,
+        abandonGame
       );
     }
 
-    return concatActions(
-      abandonGame(this)
+    return this.concatActions(
+      abandonGame
     );
+  }
+
+  getAllowedActions() {
+    let actions = [];
+
+    if (this.isOwner) {
+      if (this.self.coins >= 10) {
+        return this.concatActions(
+          coup
+        );
+      }
+
+      actions.push(
+        takeOneCoin,
+        takeTwoCoins,
+        takeThreeCoins,
+        steal,
+        changeCards
+      );
+
+      if (this.self.coins >= 3) {
+        actions.push(assassinate);
+      }
+
+      if (this.self.coins >= 7) {
+        actions.push(coup);
+      }
+    }
+
+    return this.concatActions(actions);
   }
 }
 

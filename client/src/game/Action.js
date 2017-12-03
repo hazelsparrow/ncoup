@@ -9,7 +9,7 @@ class Action extends Model {
     super(other);
 
     extendObservable(this, {
-      actor: {},
+      actor: game.self,
       target: {},
       disabled: other.disabled || false
     });

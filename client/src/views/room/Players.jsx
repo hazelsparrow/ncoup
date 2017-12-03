@@ -7,7 +7,7 @@ const Players = observer(({store}) => {
 
   return (
     <div className='mb2'>
-      {players.map(p => <Player player={p} store={store}/>)}
+      {players.map(p => <Player key={p.id} player={p} store={store}/>)}
     </div>
   );
 });
