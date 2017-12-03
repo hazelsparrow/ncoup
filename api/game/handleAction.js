@@ -1,14 +1,16 @@
 const {Card} = require('../models');
 
 function startGame(action, room) {
+  console.log('====== STARTING GSME')
+  room.players[0].coins = 7;
+  room.players[1].coins = 11;
   for (const p of room.players) {
-    p.coins = 2;
     p.cards = [
       new Card({
-        character: 'ambassador'
+        character: 'contessa'
       }),
       new Card({
-        character: 'captain'
+        character: 'duke'
       })
     ]
   }
