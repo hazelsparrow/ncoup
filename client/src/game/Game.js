@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import {observable, extendObservable, computed, action} from 'mobx';
+import {extendObservable, computed, action} from 'mobx';
 import Player from './Player';
 import _ from 'lodash';
 import Action from './Action';
@@ -28,6 +28,7 @@ class Game {
       self: computed(() => this.getSelf()),
       isOwner: computed(() => this.getIsOwner()),
       waitingToStartActions: computed(() => this.getWaitingToStartActions()),
+      sortedMessages: computed(() => [...this.messages].reverse()),
       status: GAME_STATUS.LOADING,
       statusMessage: STATUS_MESSAGES.CONNECTING
     });
@@ -43,6 +44,7 @@ class Game {
     this.socket.on('connect', () => this.onConnected());
     this.socket.on('player_connected', payload => this.onPlayerConnected(payload));
     this.socket.on('player_left', payload => this.onPlayerLeft(payload));
+    this.socket.on('action_taken', payload => this.onActionTaken(payload));
   }
 
   onConnected() {
@@ -53,6 +55,10 @@ class Game {
     );
   }
 
+  refreshRoom(room) {
+    this.players = room.players.map(p => new Player(p));
+  }
+
   onPlayerConnected({room, player}) {
     if (!this.room) {
       this.room = room;
@@ -61,7 +67,7 @@ class Game {
     const newPlayer = new Player(player);
 
     this.messages.push(`${newPlayer.name} has connected.`);
-    this.players = room.players.map(p => new Player(p));
+    this.refreshRoom(room);
 
     if (newPlayer.id === this.selfId) {
       this.status = GAME_STATUS.WAITING_TO_START;
@@ -76,9 +82,9 @@ class Game {
     this.players = room.players.map(p => new Player(p));
   }
 
-  startGame = action(() => {
-    console.log('starting game!');
-  });
+  onActionTaken({room}) {
+    this.refreshRoom(room);
+  }
 
   endGame = action(() => {
     window.location = '/';

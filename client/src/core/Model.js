@@ -1,4 +1,4 @@
-import {extendObservable, toJS, action} from 'mobx';
+import {toJS, action} from 'mobx';
 import _ from 'lodash';
 
 class Model {

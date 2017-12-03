@@ -1,11 +1,12 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import GAME_STATUS from '../../game/gameStatus';
+import moment from 'moment';
 
 const LogEntry = observer(({entry}) => {
   return (
     <div className='py1'>
-      {entry}
+      <span className='subtle'>[{moment().format('hh:mm')}]</span> {entry}
     </div>
   );
 });
@@ -15,7 +16,7 @@ const GameLog = observer(({store}) => {
 
   return (
     <div className='bg-white p2 GameLog'>
-      {store.game.messages.map(m => <LogEntry entry={m}/>)}
+      {store.game.sortedMessages.map(m => <LogEntry entry={m}/>)}
     </div>
   );
 });

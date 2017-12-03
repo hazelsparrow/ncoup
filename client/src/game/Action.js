@@ -1,10 +1,9 @@
 import {extendObservable, action} from 'mobx';
-import ACTION_TYPES from './actionTypes';
 import {Model} from '../core';
 
 class Action extends Model {
   name;
-  type;
+  actionType;
 
   constructor(other, game) {
     super(other);

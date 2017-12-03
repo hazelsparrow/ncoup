@@ -39,7 +39,7 @@ class RoomStore {
     this.game.roomId = key;
 
     try {
-      const response = await api.get(`rooms/${key}`);
+      await api.get(`rooms/${key}`);
     } catch (e) {
       this.notFound = true;
     }
