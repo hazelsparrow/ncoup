@@ -89,12 +89,12 @@ const Player = observer(({player, store}) => {
       <PlayerStatus player={player} store={store}/>
       <p className='truncate h4 bold secondary'>{player.name}</p>
       <div className='border-top mt1'>
-        <div className='col col-6'>
+        <div className='col col-6' style={{minHeight: '116px'}}>
           <div className='p1 h3 center'>
             <Cards player={player}/>
           </div>
         </div>
-        <div className='col col-6 border-left'>
+        <div className='col col-6 border-left' style={{minHeight: '116px'}}>
           <div className='p1 h3 center'>
             <Coins player={player}/>
           </div>

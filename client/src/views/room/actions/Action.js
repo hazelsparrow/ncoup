@@ -17,7 +17,7 @@ function getClassName(actionType) {
 const Action = observer(({action, store}) => {
   return (
     <ActionButton onClick={() => action.execute(store.game)}
-                  className={getClassName(action.type)}
+                  className={getClassName(action.actionType)}
                   disabled={action.disabled}>
       {action.name}
     </ActionButton>
