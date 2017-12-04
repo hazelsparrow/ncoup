@@ -4,7 +4,7 @@ import {Button} from '../../../components';
 
 const WaitingToStart = observer(({store}) => {
   return (
-    <div className=''>
+    <div>
       <p>Waiting for other players to start the game...</p>
       <div className='h5 pt1'>
         Invite your friends by sharing this link: <a href={window.location.toString()}>{window.location.toString()}</a>
