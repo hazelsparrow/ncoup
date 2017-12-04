@@ -2,6 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import WaitingToStart from './WaitingToStart';
 import Connecting from './Connecting';
+import PlayerDeciding from './PlayerDeciding';
 import STATUS_MESSAGES from '../../../game/statusMessages';
 
 const Message = observer(({store}) => {
@@ -12,6 +13,8 @@ const Message = observer(({store}) => {
       return <Connecting/>;
     case STATUS_MESSAGES.WAITING_TO_START:
       return <WaitingToStart store={store}/>;
+    case STATUS_MESSAGES.PLAYER_DECIDING:
+      return <PlayerDeciding store={store}/>;
     default:
       throw new Error(`Status ${game.statusMessage} is not supported.`);
   }

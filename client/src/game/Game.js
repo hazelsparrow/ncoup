@@ -6,6 +6,7 @@ import uuid from 'uuid';
 import Action from './Action';
 import STATUS_MESSAGES from './statusMessages';
 import GAME_STATUS from './gameStatus';
+import getLogMessageFor from './getLogMessageFor';
 import {
   abandonGame,
   startGame,
@@ -36,7 +37,9 @@ class Game {
       sortedMessages: computed(() => [...this.messages].reverse()),
       allowedActions: computed(() => this.getAllowedActions()),
       status: GAME_STATUS.LOADING,
-      statusMessage: STATUS_MESSAGES.CONNECTING
+      statusMessage: STATUS_MESSAGES.CONNECTING,
+      countdown: 0,
+      currentAction: {}
     });
   }
 
@@ -63,10 +66,10 @@ class Game {
 
   refreshRoom(room) {
     this.players = room.players.map(p => new Player(p));
+    this.currentAction = room.currentAction;
     if (room.actions.length) {
       this.status = GAME_STATUS.IN_PROGRESS;
     }
-    console.log(this.status);
   }
 
   onPlayerConnected({room, player}) {
@@ -102,6 +105,8 @@ class Game {
 
   onActionTaken({room}) {
     this.refreshRoom(room);
+    this.statusMessage = STATUS_MESSAGES.PLAYER_DECIDING;
+    this.addLogEntry(getLogMessageFor(this.currentAction));
   }
 
   endGame = action(() => {
